@@ -24,40 +24,40 @@ capital all@(x:xs) = "First letter of "++ all ++" is " ++ [x]
 
 bmiTell :: (RealFloat a) => a -> String
 bmiTell bmi
-	| bmi <= 18.5 = "Underweight!"
-	| bmi <= 25.0 = "You're normal!"
-	| bmi <= 30.0 = "You're fat!"
-	| otherwise = "You're a whale! Hah!"
+    | bmi <= 18.5 = "Underweight!"
+    | bmi <= 25.0 = "You're normal!"
+    | bmi <= 30.0 = "You're fat!"
+    | otherwise = "You're a whale! Hah!"
 
 bmiTeller :: (RealFloat a) => a -> String
 bmiTeller height weight
-	| bmi <= 18.5 = "Underweight!"
-	| bmi <= 25.0 = "You're normal!"
-	| bmi <= 30.0 = "You're fat!"
-	| otherwise = "You're a whale! Hah!"
-	where bmi = height / weight ^ 2 
+    | bmi <= 18.5 = "Underweight!"
+    | bmi <= 25.0 = "You're normal!"
+    | bmi <= 30.0 = "You're fat!"
+    | otherwise = "You're a whale! Hah!"
+    where bmi = height / weight ^ 2 
 
 max' :: (Ord a) => a -> a -> a
 max' a b
-	| a > b = a
-	| otherwise = b
+    | a > b = a
+    | otherwise = b
 
 initials :: String -> String -> String
 initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
-	where (f:_) = firstname
-		  (l:_) = lastname
+    where (f:_) = firstname
+          (l:_) = lastname
 
 -- Defining functions in guards
 calcBmis :: (RealFloat a) => [(a, a)] -> [a]
 calcBmis xs = [bmi w h | (w, h) <- xs]
-	where bmi weight height = weight / height ^ 2
+    where bmi weight height = weight / height ^ 2
 
 -- Let bindings
 cylinder :: (RealFloat a) => a -> a -> a
 cylinder r h = 
-	let sideArea = 2 * pi * r * h
-		topArea = pi * r ^2
-	in  sideArea + 2 * topArea
+    let sideArea = 2 * pi * r * h
+        topArea = pi * r ^2
+    in  sideArea + 2 * topArea
 
 -- Inline let
 [let square x = x * x in (square 5, suware 6, square 9)]
@@ -69,15 +69,15 @@ calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
 -- Case expressions
 head' :: [a] -> a
 head' xs = case xs of [] -> error 'No head for empty lists!'
-						 (x:_) -> x
+                         (x:_) -> x
 
 describeList :: [a] -> String
 describeList xs = "The list is "++ case xs of [] -> "empty."
-											  [x] -> "a singleton list."
-											  xs -> "a longer list."
+                                              [x] -> "a singleton list."
+                                              xs -> "a longer list."
 
 describeList :: [a] -> String
 describeList xs = "The list is " ++ what xs
-	where what [] = "empty."
-		  what[x] = "a singleton list."
-		  what xs = "a longer list."
+    where what [] = "empty."
+          what[x] = "a singleton list."
+          what xs = "a longer list."
